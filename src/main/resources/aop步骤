@@ -78,6 +78,10 @@ SpringBoot —— AOP注解式拦截与方法规则拦截【本案例只实现�
      http://localhost:8080/aop/add
 	 控制台会有相应的输出：System.out.println("注解式拦截 " + annotation.name());
 
+	 http://localhost:8080/aop/aopMethod
+     控制台会有相应的输出： System.out.println("方法规则式拦截," + method.getName());    方法规则式拦截,aopMethod
+
+
 
 整合来源：https://www.cnblogs.com/gdwkong/p/9307673.html
 }
