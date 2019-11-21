@@ -1,4 +1,4 @@
-SpringBoot —— AOP注解式拦截与方法规则拦截【本案例只实现了注解式拦截】
+SpringBoot —— AOP注解式拦截与方法规则拦截【本案例只实现了注解式拦截】【本案例后续补充了方法规则拦截的实现】
 
 一、创建一个简单springboot 2.03项目，添加aop依赖
 
@@ -51,12 +51,12 @@ SpringBoot —— AOP注解式拦截与方法规则拦截【本案例只实现�
     /**
      * 编写使用方法规则的被拦截类
      */
-    /*@Before("execution(* com.cenobitor.aop.service.DemoMethodService.*(..))")
+    @Before("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
     public void before(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         System.out.println("方法规则式拦截," + method.getName());
-    }*/
+    }
 
 
     /*

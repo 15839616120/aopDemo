@@ -4,6 +4,7 @@ import com.fangtianxia.annotation.AuthorityAnnotation;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -34,12 +35,12 @@ public class DemoAspect {
     /**
      * 编写使用方法规则的被拦截类
      */
-    /*@Before("execution(* com.cenobitor.aop.service.DemoMethodService.*(..))")
+    @Before("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
     public void before(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         System.out.println("方法规则式拦截," + method.getName());
-    }*/
+    }
 
 
     /*

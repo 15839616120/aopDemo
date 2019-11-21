@@ -1,20 +1,17 @@
 package com.fangtianxia.controller;
 
-import com.fangtianxia.annotation.AuthorityAnnotation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 /**
  * @author wyz
- * 编写使用注解的被拦截类
+ * 编写使用方法规则被拦截类
  */
 @RestController
 @RequestMapping("aop")
-public class AopDemoController {
+public class DemoMethodController {
 
-    @RequestMapping("add")
-    @AuthorityAnnotation(name = "ROLE_SUPER")
-    public void add(){
-
-    }
+    @RequestMapping("aopMethod")
+    public void aopMethod(){}
 }
