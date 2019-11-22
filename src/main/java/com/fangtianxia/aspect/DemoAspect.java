@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author wyz
+ */
 @Aspect
 @Component
 public class DemoAspect {
