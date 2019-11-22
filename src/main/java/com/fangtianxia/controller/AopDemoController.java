@@ -14,7 +14,7 @@ public class AopDemoController {
 
     @RequestMapping("add")
     @AuthorityAnnotation(name = "ROLE_SUPER")
-    public void add(){
+    public void add(String aa){
         System.out.println(1);
         System.out.println(2);
         System.out.println(3);

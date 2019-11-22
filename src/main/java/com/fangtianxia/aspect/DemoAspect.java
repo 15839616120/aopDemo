@@ -28,6 +28,12 @@ public class DemoAspect {
     public void before(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
+        //拿到入参 然后可以记录入参
+        Object[] args = joinPoint.getArgs();
+        for (int i = 0; i < args.length; i++) {
+            System.out.println(args[i]);
+        }
+        System.out.println(args.toString());
         AuthorityAnnotation annotation = method.getAnnotation(AuthorityAnnotation.class);
         //在这里拿到了注解，可以查询数据库进行权限判断，做一些其他的事情
         System.out.println("注解式拦截 " + annotation.name());
@@ -41,6 +47,8 @@ public class DemoAspect {
     public void beforeMethod(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
+        Object[] args = joinPoint.getArgs();
+        System.out.println(args.toString());
         System.out.println("方法规则式拦截," + method.getName());
         System.out.println(method.getName() + "：记录入参");
     }
@@ -48,15 +56,19 @@ public class DemoAspect {
     /**
      * 后置通知的改进版本：这个版本可以拿到返回值
      */
-    @AfterReturning(value="execution(* com.fangtianxia.controller.DemoMethodController.*(..))",returning="returnValue")
-    public void afterMethod(JoinPoint joinPoint,Object returnValue) {
+    @AfterReturning(value = "execution(* com.fangtianxia.controller.DemoMethodController.*(..))", returning = "returnValue")
+    public void afterMethod(JoinPoint joinPoint, Object returnValue) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         System.out.println("方法规则式拦截," + method.getName());
         System.out.println(method.getName() + "：记录出参");
         //returnValue 拿到了返回值  然后可以记录出参
-        System.out.println(method.getName() + "返回值"+returnValue);
+        System.out.println(method.getName() + "返回值" + returnValue);
     }
+
+    /*总结：
+     * 记录入参和出参 只需要有个后置通知就ok了，在后置中既可以拿到入参，又可以拿到返回值出参
+     * */
 
     //后置通知的原有版本：这个版本拿不到返回值
    /* @After(value="execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
