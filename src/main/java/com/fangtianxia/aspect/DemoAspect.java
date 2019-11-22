@@ -24,6 +24,7 @@ public class DemoAspect {
 
     /**
      * 编写使用注解的被拦截类
+     * 模拟：切注解实现权限判断的功能
      */
 
     @Before("annotationPoinCut()")
@@ -37,12 +38,22 @@ public class DemoAspect {
 
     /**
      * 编写使用方法规则的被拦截类
+     * 模拟：切方法实现记录入参出参的功能
      */
-    @After("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
-    public void after(JoinPoint joinPoint) {
+    @Before("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
+    public void afterMethod(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         System.out.println("方法规则式拦截," + method.getName());
+        System.out.println(method.getName() + "：记录入参");
+    }
+
+    @After("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
+    public void AfterMethod(JoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        System.out.println("方法规则式拦截," + method.getName());
+        System.out.println(method.getName() + "：记录出参");
     }
 
 
