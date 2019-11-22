@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoMethodController {
 
     @RequestMapping("aopMethod")
-    public void aopMethod(){
+    public String aopMethod(String aa){
         System.out.println("执行方法逻辑");
+        return "返回值";
     }
 }

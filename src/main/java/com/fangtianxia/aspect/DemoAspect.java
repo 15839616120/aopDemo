@@ -45,12 +45,14 @@ public class DemoAspect {
         System.out.println(method.getName() + "：记录入参");
     }
 
-    @After("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
-    public void afterMethod(JoinPoint joinPoint) {
+    @AfterReturning(value="execution(* com.fangtianxia.controller.DemoMethodController.*(..))",returning="returnValue")
+    public void afterMethod(JoinPoint joinPoint,Object returnValue) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         System.out.println("方法规则式拦截," + method.getName());
         System.out.println(method.getName() + "：记录出参");
+        //returnValue 拿到了返回值  然后可以记录出参
+        System.out.println(method.getName() + "返回值"+returnValue);
     }
 
     /*
