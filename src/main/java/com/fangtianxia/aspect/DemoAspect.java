@@ -45,6 +45,9 @@ public class DemoAspect {
         System.out.println(method.getName() + "：记录入参");
     }
 
+    /**
+     * 后置通知的改进版本：这个版本可以拿到返回值
+     */
     @AfterReturning(value="execution(* com.fangtianxia.controller.DemoMethodController.*(..))",returning="returnValue")
     public void afterMethod(JoinPoint joinPoint,Object returnValue) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
@@ -54,6 +57,15 @@ public class DemoAspect {
         //returnValue 拿到了返回值  然后可以记录出参
         System.out.println(method.getName() + "返回值"+returnValue);
     }
+
+    //后置通知的原有版本：这个版本拿不到返回值
+   /* @After(value="execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
+    public void afterMethod(JoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        System.out.println("方法规则式拦截," + method.getName());
+        System.out.println(method.getName() + "：记录出参");
+    }*/
 
     /*
     AOP注解说明：
