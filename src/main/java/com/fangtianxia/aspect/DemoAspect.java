@@ -2,10 +2,7 @@ package com.fangtianxia.aspect;
 
 import com.fangtianxia.annotation.AuthorityAnnotation;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
@@ -38,10 +35,10 @@ public class DemoAspect {
 
     /**
      * 编写使用方法规则的被拦截类
-     * 模拟：切方法实现记录入参出参的功能
+     * 模拟：切方法实现记录入参出参的功能   用 @Before 和  @After 实现入参 和 出参 的功能
      */
     @Before("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
-    public void afterMethod(JoinPoint joinPoint) {
+    public void beforeMethod(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         System.out.println("方法规则式拦截," + method.getName());
@@ -49,13 +46,12 @@ public class DemoAspect {
     }
 
     @After("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
-    public void AfterMethod(JoinPoint joinPoint) {
+    public void afterMethod(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         System.out.println("方法规则式拦截," + method.getName());
         System.out.println(method.getName() + "：记录出参");
     }
-
 
     /*
     AOP注解说明：
