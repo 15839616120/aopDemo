@@ -23,8 +23,8 @@ public class DemoAspect {
      * 编写使用注解的被拦截类
      */
 
-    @After("annotationPoinCut()")
-    public void after(JoinPoint joinPoint) {
+    @Before("annotationPoinCut()")
+    public void before(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         AuthorityAnnotation annotation = method.getAnnotation(AuthorityAnnotation.class);
@@ -35,8 +35,8 @@ public class DemoAspect {
     /**
      * 编写使用方法规则的被拦截类
      */
-    @Before("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
-    public void before(JoinPoint joinPoint) {
+    @After("execution(* com.fangtianxia.controller.DemoMethodController.*(..))")
+    public void after(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         System.out.println("方法规则式拦截," + method.getName());

@@ -55,6 +55,7 @@ SpringBoot —— AOP注解式拦截与方法规则拦截【本案例只实现�
     public void before(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
+
         System.out.println("方法规则式拦截," + method.getName());
     }
 五、运行
